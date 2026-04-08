@@ -47,10 +47,27 @@ streamlit run streamlit_app.py
 
 ## What the scripts do
 
-- `utils.py`: Implements the analytic formula and a dataset generator using random `Z_L` and `Z_0` samples.
-- `train.py`: Generates data, scales features, trains a Keras model, evaluates on a hold-out test set, saves the trained model and scaler, and writes plots to `outputs/`.
-- `predict.py`: Loads the scaler and trained model (if present) and returns the ANN prediction; otherwise reports the analytic value.
 
+## Deploying to Render.com (one-click style)
+
+You can deploy the Streamlit web UI to Render.com and get a public URL. Steps:
+
+1. Push your repo to GitHub (already done for this project).
+2. Sign in to https://render.com and choose "New" → "Web Service".
+3. Connect your GitHub account and choose this repository (`ANN_PREDICTOR`) and branch `main`.
+4. For Environment choose **Docker** (we included a `Dockerfile`).
+5. Leave the Build Command blank. For Start Command use:
+
+```
+streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0
+```
+
+6. Create the service. Render will build the container and assign a public URL like `https://<your-service-name>.onrender.com`.
+
+Notes:
+- The Docker image installs Python 3.10 and the packages in `requirements.txt`.
+- If you prefer not to use Docker, you can select the Python environment option in Render and set the Start Command above; Render will install dependencies from `requirements.txt`.
+- If TensorFlow wheel installation fails on Render's builder for your selected plan, consider using a smaller model or a CPU-only compatible wheel; alternatively use the included scikit-learn fallback (already trained model is checked into `models/`).
 ## Performance and evaluation
 
 The `train.py` script prints MSE/MAE on the test set and also reports the fraction of predictions within absolute tolerances (e.g., 0.01 and 0.05). Plots are saved to `outputs/pred_vs_actual.png` and `outputs/training_history.png`.
