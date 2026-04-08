@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ann_reflection"
+version = "0.1.0"
+description = "ANN predictor for transmission line reflection coefficient"
+requires-python = ">=3.10,<3.11"
+authors = [ { name = "AutoCommit", email = "autobot@example.com" } ]

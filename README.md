@@ -61,3 +61,35 @@ The `train.py` script prints MSE/MAE on the test set and also reports the fracti
 - The ANN architecture is intentionally simple; you can tune depth, width, regularization, or try other models for improved performance.
 
 If you want, I can now train the model here (if you want me to attempt training in this environment), or run a small smoke test to verify the scripts execute. Which would you like next?
+
+## Target Python Version
+
+This project targets Python 3.10 to ensure compatibility with TensorFlow and other binary packages.
+
+Suggested options to get a Python 3.10 environment on Windows:
+
+- Install from the official installer: https://www.python.org/downloads/release/python-31013/
+- Use `winget` (Windows 10/11):
+
+```powershell
+winget install --id=Python.Python.3.10 -e --source winget
+```
+
+- Use `conda` (Anaconda/Miniconda):
+
+```bash
+conda create -n ann-ref python=3.10 pip -y
+conda activate ann-ref
+pip install -r requirements.txt
+```
+
+After installing Python 3.10, create a virtual environment and install dependencies:
+
+```bash
+python -m venv .venv
+.\.venv\Scripts\activate  # PowerShell/CMD on Windows
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+CI and development tools use Python 3.10 as well (see `.python-version`, `Pipfile`, and `pyproject.toml`).
